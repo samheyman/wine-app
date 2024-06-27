@@ -1,0 +1,307 @@
+---
+import Layout from "../layouts/Layout.astro";
+import WineListing from "../components/WineListing.astro";
+
+const wines: any = [
+  {
+    type: "red",
+    name: "Boscarelli Vino Nobile di Montepulciano",
+    producer: "Poderi Boscarelli",
+    year: 2019,
+    country: "Italy",
+    region: "Tuscany",
+    grapes: "Canaiolo 10%, Sangiovese 90%",
+    smell: ["plum", "orange peel", "fresh fruit"],
+    taste: ["soft tannins", "long aftertaste"],
+    pairing: ["beef", "cheese"],
+    price: 349.5,
+    link: "https://www.vinmonopolet.no/Land/Italia/Toscana/Vino-Nobile-di-Montepulciano/Boscarelli-Vino-Nobile-di-Montepulciano-2019/p/14099001",
+  },
+  {
+    type: "red",
+    name: "Viña Ardanza Reserva",
+    producer: "La Rioja Alta",
+    year: 2017,
+    country: "Spain",
+    region: "Rioja Alta",
+    grapes: "Tempranillo (Tinto del Pais) 80%, Garnacha 20%",
+    smell: [
+      "red berries",
+      "dried fruit and herbs",
+      "barrel",
+      "tobacco",
+      "vanilla",
+    ],
+    taste: [
+      "barrel-aged and developed",
+      "hints of ripe berries",
+      "raisins",
+      "some tobacco",
+      "vanilla",
+      "spices",
+    ],
+    pairing: ["beef", "cheese"],
+    price: 379.9,
+    link: "https://www.vinmonopolet.no/Land/Spania/Rioja/Vi%C3%B1a-Ardanza-Reserva-2017/p/353401",
+  },
+  {
+    type: "sparkling",
+    name: "Raventós de la Finca",
+    producer: "Raventós in Blanc",
+    year: 2019,
+    country: "Spain",
+    region: "Tuscany",
+    grapes: "Parellada 10%, Macabeo 30%, Xarel lo 60%",
+    smell: ["Fresh scent", "deep minerality", "currants", "bread"],
+    taste: ["good acidity and minerality", "long aftertaste"],
+    pairing: ["shellfish", "fish"],
+    price: 349.5,
+    link: "https://www.vinmonopolet.no/Land/Spania/Cava/Ravent%C3%B3s-de-la-Finca-2019/p/9600401",
+  },
+  {
+    type: "white",
+    name: "Dog Point Chardonnay",
+    producer: "Dog Point Vineyards",
+    year: 2021,
+    country: "New Zealand",
+    region: "Marlborough",
+    grapes: "Parellada 10%, Macabeo 30%, Xarel lo 60%",
+    smell: [
+      "lemon peel",
+      "flint",
+      "ripe citrus fruits",
+      "toast",
+      "oak",
+      "mineral notes",
+    ],
+    taste: [
+      "rich",
+      "sour and juicy",
+      "barrel notes",
+      "citrus",
+      "nuts",
+      "apple",
+      "long finish",
+    ],
+    pairing: ["shellfish", "fish", "pork"],
+    price: 385.5,
+    link: "https://www.vinmonopolet.no/Land/New-Zealand/Marlborough/Dog-Point-Chardonnay-2021/p/3996401",
+  },
+  {
+    type: "red",
+    name: "Viña Tondonia Reserva",
+    producer: "Lopez de Heredia",
+    year: 2011,
+    country: "Spain",
+    region: "Rioja",
+    grapes: "Tempranillo 75%, Garnacha 10%, Graciano (Bovale) 5%, Mazuelo 5%",
+    smell: [
+      "red and dark berries",
+      "dried fruit",
+      "leather",
+      "meat",
+      "dill",
+      "integrated barrel",
+    ],
+    taste: [
+      "concentrated notes of ripe and dried fruit",
+      "leather",
+      "herbs",
+      "barrel",
+      "good length",
+    ],
+    pairing: ["beef", "lamb", "game"],
+    price: 419.9,
+    link: "https://www.vinmonopolet.no/Land/Spania/Rioja/Vi%C3%B1a-Tondonia-Reserva-2011/p/3461001",
+  },
+  {
+    type: "sparkling",
+    name: "Diel Reserve Riesling Sekt Brut",
+    producer: "Schlossgut Diel",
+    year: 2017,
+    country: "Germany",
+    region: "Nahe",
+    grapes: "Tempranillo 75%, Garnacha 10%, Graciano (Bovale) 5%, Mazuelo 5%",
+    smell: ["apples", "citrus", "biscuits"],
+    taste: ["Lightly creamy mouthfeel", "balanced acidity", "Long"],
+    pairing: ["shellfish"],
+    price: 399,
+    link: "https://www.vinmonopolet.no/Land/Tyskland/Nahe/Diel-Reserve-Riesling-Sekt-Brut-2017/p/16424101",
+  },
+  {
+    type: "sparkling",
+    name: "Nicolas Maillart Platine Premier Cru Brut",
+    producer: "Nicolas Maillart",
+    year: 2017,
+    country: "France",
+    region: "Champagne",
+    grapes: "Tempranillo 75%, Garnacha 10%, Graciano (Bovale) 5%, Mazuelo 5%",
+    smell: [
+      "ripe apple",
+      "peach",
+      "some pastry",
+      "hints of apple cake",
+      "brioche and minerals",
+    ],
+    taste: [
+      "Developed",
+      "fresh and mineral",
+      "good length",
+      "notes of ripe apples",
+      "citrus",
+      "biscuits",
+      "nuts and spices",
+    ],
+    pairing: ["aperitif", "fish", "shellfish"],
+    price: 499.9,
+    link: "https://www.vinmonopolet.no/Land/Frankrike/Champagne/Montagne-de-Reims/Nicolas-Maillart-Platine-Premier-Cru-Brut/p/10299801",
+  },
+];
+---
+
+<Layout title="Welcome to Astro.">
+  <main>
+    <h1>The Heyman Collection</h1>
+    <p class="intro">
+      A handpicked collection of wines from small to medium producers around the
+      world, each offering incredible value for money. These bottles truly
+      capture the essence of their country, region, and grape variety. Whether
+      you're sipping something from the hills of Tuscany or the sunny vineyards
+      of California, we hope you enjoy exploring these unique and flavorful
+      finds as much as we do.
+    </p>
+    <div class="shop">
+      <img
+        src="./images/vinmonopolet.png"
+        alt="Vinmonolopolet"
+        class="shop-logo round-border"
+      /><img
+        src="./images/systembolaget.png"
+        alt="Systembolaget"
+        class="shop-logo"
+      />
+    </div>
+    <div>
+      <h2>Sparkling</h2>
+      <ul>
+        {
+          wines
+            .filter((wine: any) => wine.type === "sparkling")
+            .map((wine: any, id: number) => {
+              return <WineListing wineListing={wine} />;
+            })
+        }
+      </ul>
+    </div>
+
+    <div>
+      <h2>White</h2>
+      <ul>
+        {
+          wines
+            .filter((wine: any) => wine.type === "white")
+            .map((wine: any, id: number) => <WineListing wineListing={wine} />)
+        }
+      </ul>
+    </div>
+    <div>
+      <h2>Red</h2>
+      <ul>
+        {
+          wines
+            .filter((wine: any) => wine.type === "red")
+            .map((wine: any, id: number) => <WineListing wineListing={wine} />)
+        }
+      </ul>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  main {
+    margin: auto;
+    padding: 3rem;
+    width: 800px;
+    max-width: min(1200px, 100%);
+    color: white;
+    font-size: 20px;
+    line-height: 1.6;
+    border: 1px solid white;
+  }
+
+  .shop {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .shop-logo {
+    height: 30px;
+  }
+
+  .round-border {
+    /* border-radius: 50%; */
+  }
+
+  .astro-a {
+    position: absolute;
+    top: -32px;
+    left: 50%;
+    transform: translatex(-50%);
+    width: 220px;
+    height: auto;
+    z-index: -1;
+  }
+  h1 {
+    font-size: 3rem;
+    font-weight: 600;
+    line-height: 1;
+    text-align: center;
+    margin-bottom: 0.75em;
+  }
+  h2 {
+    padding-bottom: 0rem;
+    margin-bottom: 0;
+    font-weight: 600;
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+  .text-gradient {
+    background-image: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 400%;
+    background-position: 0%;
+  }
+  .instructions {
+    margin-bottom: 2rem;
+    border: 1px solid rgba(var(--accent-light), 25%);
+    background: linear-gradient(
+      rgba(var(--accent-dark), 66%),
+      rgba(var(--accent-dark), 33%)
+    );
+    padding: 1.5rem;
+    border-radius: 8px;
+  }
+  .instructions code {
+    font-size: 0.8em;
+    font-weight: bold;
+    background: rgba(var(--accent-light), 12%);
+    color: rgb(var(--accent-light));
+    border-radius: 4px;
+    padding: 0.3em 0.4em;
+  }
+  .instructions strong {
+    color: rgb(var(--accent-light));
+  }
+  .link-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+    gap: 2rem;
+    padding: 0;
+  }
+</style>
