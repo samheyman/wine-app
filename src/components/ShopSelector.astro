@@ -1,0 +1,69 @@
+---
+
+---
+
+<div class="shop">
+  <button id="vm_btn"
+    ><img class="shop-logo" src="./images/vm_logo_black.png" /></button
+  >
+  <button id="sb_btn"
+    ><img class="shop-logo" src="./images/sb_logo.png" /></button
+  >
+</div>
+<script is:inline>
+  const shop = (() => {
+    if (typeof localStorage !== "undefined" && localStorage.getItem("shop")) {
+      return localStorage.getItem("shop");
+    }
+    return "vm";
+  })();
+  if (shop === "vm") {
+    document.documentElement.classList.remove("sb");
+  } else {
+    document.documentElement.classList.add("sb");
+  }
+
+  if (shop) {
+    window.localStorage.setItem("shop", shop);
+  }
+
+  const setVinmonopolet = () => {
+    localStorage.setItem("shop", "vm");
+    location.reload();
+  };
+  const setSystembolaget = () => {
+    localStorage.setItem("shop", "sb");
+    location.reload();
+  };
+
+  document.getElementById("sb_btn").addEventListener("click", setSystembolaget);
+  document.getElementById("vm_btn").addEventListener("click", setVinmonopolet);
+</script>
+
+<style>
+  .shop {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .shop-logo {
+    height: 30px;
+  }
+
+  .round-border {
+    /* border-radius: 50%; */
+  }
+
+  button {
+    border: none;
+    cursor: pointer;
+    appearance: none;
+    background-color: inherit;
+  }
+
+  button:active {
+    border: 2px solid white;
+  }
+</style>

@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import WineListing from "../components/WineListing.astro";
+import ShopSelector from "../components/ShopSelector.astro";
 
 const wines: any = [
   {
@@ -14,8 +15,11 @@ const wines: any = [
     smell: ["plum", "orange peel", "fresh fruit"],
     taste: ["soft tannins", "long aftertaste"],
     pairing: ["beef", "cheese"],
-    price: 349.5,
-    link: "https://www.vinmonopolet.no/Land/Italia/Toscana/Vino-Nobile-di-Montepulciano/Boscarelli-Vino-Nobile-di-Montepulciano-2019/p/14099001",
+    price_vm: 349.5,
+    price_sb: 241,
+    link_vm:
+      "https://www.vinmonopolet.no/Land/Italia/Toscana/Vino-Nobile-di-Montepulciano/Boscarelli-Vino-Nobile-di-Montepulciano-2019/p/14099001",
+    link_sb: "https://www.systembolaget.se/produkt/vin/boscarelli-9397901/",
   },
   {
     type: "red",
@@ -41,8 +45,9 @@ const wines: any = [
       "spices",
     ],
     pairing: ["beef", "cheese"],
-    price: 379.9,
-    link: "https://www.vinmonopolet.no/Land/Spania/Rioja/Vi%C3%B1a-Ardanza-Reserva-2017/p/353401",
+    price_vm: 379.9,
+    link_vm:
+      "https://www.vinmonopolet.no/Land/Spania/Rioja/Vi%C3%B1a-Ardanza-Reserva-2017/p/353401",
   },
   {
     type: "sparkling",
@@ -55,8 +60,12 @@ const wines: any = [
     smell: ["Fresh scent", "deep minerality", "currants", "bread"],
     taste: ["good acidity and minerality", "long aftertaste"],
     pairing: ["shellfish", "fish"],
-    price: 349.5,
-    link: "https://www.vinmonopolet.no/Land/Spania/Cava/Ravent%C3%B3s-de-la-Finca-2019/p/9600401",
+    price_vm: 349.5,
+    price_sb: 231.0,
+    link_vm:
+      "https://www.vinmonopolet.no/Land/Spania/Cava/Ravent%C3%B3s-de-la-Finca-2019/p/9600401",
+    link_sb:
+      "https://www.systembolaget.se/produkt/vin/raventos-i-blanc-9263401/",
   },
   {
     type: "white",
@@ -84,8 +93,12 @@ const wines: any = [
       "long finish",
     ],
     pairing: ["shellfish", "fish", "pork"],
-    price: 385.5,
-    link: "https://www.vinmonopolet.no/Land/New-Zealand/Marlborough/Dog-Point-Chardonnay-2021/p/3996401",
+    price_vm: 385.5,
+    price_sb: 289,
+    link_vm:
+      "https://www.vinmonopolet.no/Land/New-Zealand/Marlborough/Dog-Point-Chardonnay-2021/p/3996401",
+    link_sb:
+      "https://www.systembolaget.se/produkt/vin/dog-point-vineyards-9482401/",
   },
   {
     type: "red",
@@ -111,8 +124,9 @@ const wines: any = [
       "good length",
     ],
     pairing: ["beef", "lamb", "game"],
-    price: 419.9,
-    link: "https://www.vinmonopolet.no/Land/Spania/Rioja/Vi%C3%B1a-Tondonia-Reserva-2011/p/3461001",
+    price_vm: 419.9,
+    link_vm:
+      "https://www.vinmonopolet.no/Land/Spania/Rioja/Vi%C3%B1a-Tondonia-Reserva-2011/p/3461001",
   },
   {
     type: "sparkling",
@@ -125,8 +139,9 @@ const wines: any = [
     smell: ["apples", "citrus", "biscuits"],
     taste: ["Lightly creamy mouthfeel", "balanced acidity", "Long"],
     pairing: ["shellfish"],
-    price: 399,
-    link: "https://www.vinmonopolet.no/Land/Tyskland/Nahe/Diel-Reserve-Riesling-Sekt-Brut-2017/p/16424101",
+    price_vm: 399,
+    link_vm:
+      "https://www.vinmonopolet.no/Land/Tyskland/Nahe/Diel-Reserve-Riesling-Sekt-Brut-2017/p/16424101",
   },
   {
     type: "sparkling",
@@ -153,8 +168,9 @@ const wines: any = [
       "nuts and spices",
     ],
     pairing: ["aperitif", "fish", "shellfish"],
-    price: 499.9,
-    link: "https://www.vinmonopolet.no/Land/Frankrike/Champagne/Montagne-de-Reims/Nicolas-Maillart-Platine-Premier-Cru-Brut/p/10299801",
+    price_vm: 499.9,
+    link_vm:
+      "https://www.vinmonopolet.no/Land/Frankrike/Champagne/Montagne-de-Reims/Nicolas-Maillart-Platine-Premier-Cru-Brut/p/10299801",
   },
 ];
 ---
@@ -170,17 +186,7 @@ const wines: any = [
       of California, we hope you enjoy exploring these unique and flavorful
       finds as much as we do.
     </p>
-    <div class="shop">
-      <img
-        src="./images/vinmonopolet.png"
-        alt="Vinmonolopolet"
-        class="shop-logo round-border"
-      /><img
-        src="./images/systembolaget.png"
-        alt="Systembolaget"
-        class="shop-logo"
-      />
-    </div>
+    <ShopSelector />
     <div>
       <h2>Sparkling</h2>
       <ul>
@@ -227,21 +233,6 @@ const wines: any = [
     font-size: 20px;
     line-height: 1.6;
     border: 1px solid white;
-  }
-
-  .shop {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 1rem;
-  }
-
-  .shop-logo {
-    height: 30px;
-  }
-
-  .round-border {
-    /* border-radius: 50%; */
   }
 
   .astro-a {
@@ -298,7 +289,7 @@ const wines: any = [
   .instructions strong {
     color: rgb(var(--accent-light));
   }
-  .link-card-grid {
+  .link_vm-card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
     gap: 2rem;

@@ -3,33 +3,74 @@
 //   wineListing: any;
 // }
 
-const { wineListing } = Astro.props;
+const { wineListing, shop } = Astro.props;
 ---
 
-<li>
-  <div class="wine-name">
-    <div>
-      <span>{wineListing.name}</span>
-      <span>{wineListing.year}</span>,
-      <span>{wineListing.region}</span>,
-      <span>{wineListing.country}</span>
-    </div>
-    <div class="spacer"></div>
-    <a target="_blank" href={wineListing.link}>{wineListing.price.toFixed(2)}</a
-    >
-  </div>
-  <div class="taste">
-    {
-      wineListing.taste.map((taste: any) => (
-        <span class="taste-item">{taste}</span>
-      ))
-    }
-  </div>
-</li>
+<>
+  {
+    wineListing.hasOwnProperty("link_vm") && (
+      <li class="vmListing">
+        <div class="wine-name">
+          <div>
+            <span>{wineListing.name}</span>
+            <span>{wineListing.year}</span>,<span>{wineListing.region}</span>,
+            <span>{wineListing.country}</span>
+          </div>
+          <div class="spacer" />
+          <a target="_blank" href={`${wineListing.link_vm}`}>
+            {wineListing.price_vm.toFixed(2)}
+          </a>
+        </div>
+        <div class="taste">
+          {wineListing.taste.map((taste: any) => (
+            <span class="taste-item">{taste}</span>
+          ))}
+        </div>
+      </li>
+    )
+  }
+  {
+    wineListing.hasOwnProperty("link_sb") && (
+      <li class="sbListing">
+        <div class="wine-name">
+          <div>
+            <span>{wineListing.name}</span>
+            <span>{wineListing.year}</span>,<span>{wineListing.region}</span>,
+            <span>{wineListing.country}</span>
+          </div>
+          <div class="spacer" />
+          <a target="_blank" href={`${wineListing.link_sb}`}>
+            {wineListing.price_sb.toFixed(2)}
+          </a>
+        </div>
+        <div class="taste">
+          {wineListing.taste.map((taste: any) => (
+            <span class="taste-item">{taste}</span>
+          ))}
+        </div>
+      </li>
+    )
+  }
+</>
 <style>
   li {
     margin: 0.8rem 0;
   }
+
+  .sbListing {
+    display: none;
+  }
+  .vmListing {
+    display: block;
+  }
+
+  :global(.sb) .sbListing {
+    display: block;
+  }
+  :global(.sb) .vmListing {
+    display: none;
+  }
+
   .wine-name {
     display: flex;
     flex-direction: row;
